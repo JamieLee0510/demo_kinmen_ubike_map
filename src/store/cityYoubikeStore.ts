@@ -104,7 +104,7 @@ export const useCityYoubikeStore = defineStore('cityYoubike', () => {
             const dateParams = dateFormatter(date);
 
             const result = await getYoubikeHistory(currCity.value, dateParams);
-            // 將資料進行時間排序處理
+            // 解析JSONL字串，並將資料進行時間排序處理
             const sortedHistoryData = transJsonl2Json(result)
                 .map((item) => {
                     if (item) {
