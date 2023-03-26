@@ -8,7 +8,7 @@
 
 ## 專案 Demo 展示圖：
 
-![image](https://i.imgur.com/wACibWw.png)
+![image](https://i.imgur.com/Ekuvdqq.png)
 
 ## 專案運行說明
 
