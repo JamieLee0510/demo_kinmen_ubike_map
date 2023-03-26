@@ -6,13 +6,15 @@
 -   Table 呈現各站點的實時剩餘可租借 Youbike 數量（60 秒更新）；點擊「前往地點」，地圖會跳往該站點。
 -   Chart 呈現站點歷史數據（由於限制前 1000 筆資料，因此大概只能達到 2 ～ 3 個站點的歷史數據）；可以使用日期下拉組件來選取想查詢的日期（日期範圍：2021-06-01 ～當日的前一天）
 
-## 專案 Demo 展示圖：
+## 專案 Demo：
 
-![image](https://i.imgur.com/Ekuvdqq.png)
+-   線上 demo [link](https://demo-kinmen-ubike-map-7xfj.vercel.app/)
+-   展示圖：
+    ![image](https://i.imgur.com/Ekuvdqq.png)
 
 ## 專案運行說明
 
--   此專案使用 Vue+Vite+Typescript 開發；本地開發環境為 `node v16.19.0`，因此建議運行環境的 node 版本盡量高於`v16.19.0`
+-   此專案使用 Vue+Vite+Typescript 開發；本地開發環境為 `node v16.19.0`，因此建議運行環境的 node 版本盡量不低於於`v16.19.0`
 -   clone 專案到本地
 -   在專案根目錄下新增`.env`檔，並根據`.env.example`的命名規則新增環境變量：
     -   `VITE_TDX_GRANT_TYPE`預設為`client_credentials`
