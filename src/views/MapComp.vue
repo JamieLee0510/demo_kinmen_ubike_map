@@ -48,26 +48,3 @@ export default defineComponent({
     }
 });
 </script>
-
-<style lang="scss">
-// .my-map-container {
-//     width: 90%;
-//     height: 90%;
-// }
-// .marker {
-//     background-image: url('@assets/mapbox-icon.png');
-//     background-size: cover;
-//     width: 50px;
-//     height: 50px;
-//     border-radius: 50%;
-//     cursor: pointer;
-// }
-// .mapboxgl-popup {
-//     max-width: 200px;
-// }
-
-// .mapboxgl-popup-content {
-//     text-align: center;
-//     font-family: 'Open Sans', sans-serif;
-// }
-</style>

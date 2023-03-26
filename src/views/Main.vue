@@ -65,12 +65,45 @@ export default defineComponent({
         flex-direction: column;
         .rent-chart-area {
             width: 100%;
-            // height: 500px;
+            height: 300px;
         }
         .table-container {
             width: 100%;
             height: 300px;
             overflow: scroll;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .main-container {
+        width: 100%;
+        padding: 20px;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .left-container {
+            width: 800px;
+            height: 400px;
+        }
+
+        .right-container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            margin-top: 100px;
+            .rent-chart-area {
+                width: 100%;
+                height: 600px;
+            }
+            .table-container {
+                width: 100%;
+                height: 300px;
+                overflow: scroll;
+            }
         }
     }
 }

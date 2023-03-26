@@ -31,8 +31,18 @@ export default defineComponent({
     },
     setup(props) {
         const mapContainer = ref<HTMLElement | null>(null);
-        const resizeObserver = ref<ResizeObserver | null>(null);
         const map = ref<mapboxgl.Map | null>(null);
+
+        const isResizing = ref(false);
+        const resizeObserver = new ResizeObserver(() => {
+            if (isResizing.value) return;
+            isResizing.value = true;
+            setTimeout(() => {
+                map.value?.resize();
+                isResizing.value = false;
+            }, 300);
+        });
+
         provide('mapbox-map', map);
         const isLoading = ref(true);
         const mapOptions = computed(() => {
@@ -44,28 +54,18 @@ export default defineComponent({
             };
         });
 
-        // watchEffect(() => {
-        //     map.value?.setCenter(props.options!.center);
-        //     map.value?.setZoom(props.options!.zoom);
-        // });
-
         onMounted(() => {
             mapboxgl.accessToken = MAPBOX_TOKEN;
             map.value = new mapboxgl.Map(mapOptions.value);
             map.value.on('load', () => {
                 isLoading.value = false;
             });
-            resizeObserver.value = new ResizeObserver(() => {
-                debounce(() => {
-                    console.log('debounce?');
-                    map.value!.resize();
-                }, 300);
-            });
-            resizeObserver.value.observe(mapContainer.value!);
+
+            resizeObserver.observe(mapContainer.value!);
         });
         onUnmounted(() => {
             map.value?.remove();
-            resizeObserver.value?.disconnect();
+            resizeObserver.disconnect();
         });
 
         return { mapContainer, isLoading, map };

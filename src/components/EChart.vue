@@ -6,6 +6,7 @@
 import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import * as echarts from 'echarts';
 import { debounce } from 'lodash';
+import { useResizeThottle } from '@base/utils/hooks';
 export default defineComponent({
     name: 'EChart',
     props: {
@@ -20,8 +21,25 @@ export default defineComponent({
     },
     setup(props) {
         const chartDom = ref<HTMLElement | null>(null);
-        const resizeObserver = ref<ResizeObserver | null>(null);
         const chart = ref<echarts.ECharts | null>(null);
+
+        useResizeThottle(
+            300,
+            () => {
+                console.log('chart.value?.resize();');
+                chart.value?.resize();
+            },
+            chartDom
+        );
+        // const isResizing = ref(false);
+        // const resizeObserver = new ResizeObserver(() => {
+        //     if (isResizing.value) return;
+        //     isResizing.value = true;
+        //     setTimeout(() => {
+        //         chart.value?.resize();
+        //         isResizing.value = false;
+        //     }, 300);
+        // });
 
         watch(props.option, (newValue) => {
             chart.value!.setOption(newValue);
@@ -45,19 +63,19 @@ export default defineComponent({
 
         onMounted(() => {
             chart.value = echarts.init(chartDom.value!);
-
             chart.value.setOption(props.option);
-
-            resizeObserver.value = new ResizeObserver(() => {
-                debounce(() => {
-                    chart.value!.resize();
-                }, 300);
-            });
-            resizeObserver.value.observe(chartDom.value!);
+            // resizeObserver.observe(chartDom.value!);
         });
 
+        // watch(
+        //     () => chartDom.value!.clientWidth,
+        //     (value) => {
+        //         console.log('chartDom change!');
+        //     }
+        // );
+
         onUnmounted(() => {
-            resizeObserver.value!.disconnect();
+            // resizeObserver.disconnect();
             chart.value!.dispose();
         });
 
