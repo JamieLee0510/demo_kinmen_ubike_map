@@ -7,7 +7,7 @@
             <MapboxMarker v-for="data in cityYoubike" :key="data.uid" :lngLat="data.position">
                 <template #popup>
                     <h3 class="popup-title">{{ data.stationName }}</h3>
-                    <p class="popup-content">剩餘車位:{{ data.availableReturnBikes }}</p>
+                    <p class="popup-content">剩餘:{{ data.availableRentBikes }}</p>
                 </template>
             </MapboxMarker>
         </template>
