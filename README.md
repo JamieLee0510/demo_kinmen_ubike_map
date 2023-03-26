@@ -15,7 +15,7 @@
 -   此專案使用 Vue+Vite+Typescript 開發；本地開發環境為 `node v16.19.0`，因此建議運行環境的 node 版本盡量高於`v16.19.0`
 -   clone 專案到本地
 -   在專案根目錄下新增`.env`檔，並根據`.env.example`的命名規則新增環境變量：
-    -   `VITE_TDX_GRANT_TYPE`為https://tdx.transportdata.tw預設的`client_credentials`
+    -   `VITE_TDX_GRANT_TYPE`預設為`client_credentials`
     -   `VITE_TDX_CLIENT_ID`須至[https://tdx.transportdata.tw](https://tdx.transportdata.tw)申請 ID
     -   `VITE_TDX_CLIENT_SECRET`為 CLIENT_ID 相應的密鑰
     -   `VITE_MAPBOX_TOEKN`為申請 Mapbox 的帳號後的 token

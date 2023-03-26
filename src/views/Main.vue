@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-        <div class="demo">
+        <div class="left-container">
             <h1>金門Youbike地圖</h1>
             <MapComp />
         </div>
@@ -53,7 +53,7 @@ export default defineComponent({
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    .demo {
+    .left-container {
         width: 400px;
         height: 700px;
     }
