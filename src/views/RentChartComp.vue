@@ -10,7 +10,6 @@
         <div class="chart-container">
             <EChart :option="cityBikeHistoryChartOptions" :isLoading="isChartLoading" />
         </div>
-        <button @click="test">test</button>
     </div>
 </template>
 

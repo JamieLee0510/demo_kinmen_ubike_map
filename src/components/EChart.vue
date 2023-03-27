@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue';
+import { defineComponent, onActivated, onMounted, onUnmounted, ref, watch } from 'vue';
 import * as echarts from 'echarts';
 import { debounce } from 'lodash';
 import { useResizeThottle } from '@base/utils/hooks';
@@ -27,10 +27,12 @@ export default defineComponent({
             300,
             () => {
                 console.log('chart.value?.resize();');
-                chart.value?.resize();
+
+                chart.value!.resize();
             },
             chartDom
         );
+
         // const isResizing = ref(false);
         // const resizeObserver = new ResizeObserver(() => {
         //     if (isResizing.value) return;
@@ -42,7 +44,7 @@ export default defineComponent({
         // });
 
         watch(props.option, (newValue) => {
-            chart.value!.setOption(newValue);
+            chart.value!.setOption({ ...newValue });
         });
         watch(
             () => props.isLoading,
@@ -63,20 +65,11 @@ export default defineComponent({
 
         onMounted(() => {
             chart.value = echarts.init(chartDom.value!);
-            chart.value.setOption(props.option);
-            // resizeObserver.observe(chartDom.value!);
+            chart.value.setOption({ ...props.option });
         });
 
-        // watch(
-        //     () => chartDom.value!.clientWidth,
-        //     (value) => {
-        //         console.log('chartDom change!');
-        //     }
-        // );
-
         onUnmounted(() => {
-            // resizeObserver.disconnect();
-            chart.value!.dispose();
+            chart.value?.dispose();
         });
 
         return { chartDom };
